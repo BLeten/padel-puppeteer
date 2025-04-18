@@ -7,7 +7,7 @@ module.exports = async function handler({ page, context }) {
   const FRIENDS = ["Jonas Knevels", "Birger Meuwis", "Jonathan Evens"];
   const CLUB_ID = "1408710";
   const bookingDate = new Date();
-  bookingDate.setDate(bookingDate.getDate() + 9);  // Adding 9 days
+  bookingDate.setDate(bookingDate.getDate() + 8);  // Adding 9 days
   const day = String(bookingDate.getDate()).padStart(2, '0');  // Ensure two-digit day
   const month = String(bookingDate.getMonth() + 1).padStart(2, '0');  // Ensure two-digit month (months are zero-indexed)
   const year = bookingDate.getFullYear();
@@ -86,10 +86,10 @@ module.exports = async function handler({ page, context }) {
       }
     }
 
-    // Wait until 19:30 before proceeding
+    /*// Wait until 19:30 before proceeding
     const waitUntilBookingTime = async () => {
       const targetTime = new Date();
-      targetTime.setUTCHours(8, 0, 0, 0); // 19:30 Belgian time in UTC
+      targetTime.setUTCHours(7, 45, 0, 0); // 19:30 Belgian time in UTC
 
       const cutoffTime = new Date();
       cutoffTime.setUTCHours(8, 30, 0, 0); // 19:30 Belgian time in UTC
@@ -117,7 +117,7 @@ module.exports = async function handler({ page, context }) {
 
     console.log("🕒 Waiting until booking time…");
     await waitUntilBookingTime();
-    console.log("🚀 Proceeding with booking flow…");
+    console.log("🚀 Proceeding with booking flow…");*/
 
     // Change court selection
     await page.waitForSelector('select[id$=":terrain"]', { visible: true, timeout: 30000 });
