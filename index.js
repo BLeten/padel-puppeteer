@@ -1,9 +1,6 @@
 module.exports = async function handler({ page, context }) {
   console.log("🚀 Script started");
 
-/*require('dotenv').config();
-const puppeteer = require('puppeteer');*/
-
   // Configuration (same as in the Python script)
   const USERNAME = "b_leten@hotmail.com";
   const PASSWORD = "Pinterclub!";
@@ -24,16 +21,6 @@ const puppeteer = require('puppeteer');*/
 
   async function bookPadel() {
     
-    // Launch Puppeteer
-    console.log("🔧 Launching Puppeteer...");
-    const browser = await puppeteer.launch({
-      headless: false,
-      args: ['--no-sandbox', '--disable-dev-shm-usage'],
-    });
-
-    // Launch browser
-    console.log("✅ Puppeteer launched browser");
-    const page = await browser.newPage();
     await page.goto('https://www.tennisenpadelvlaanderen.be/login', { waitUntil: 'networkidle2' });
 
     // Set username
@@ -112,8 +99,6 @@ const puppeteer = require('puppeteer');*/
 
         if (now > cutoffTime) {
           console.log("⏰ Too late to book — current time is after 20:00");
-          await browser.close();
-          process.exit(0);
         }
 
         if (now >= targetTime) {
@@ -146,7 +131,6 @@ const puppeteer = require('puppeteer');*/
     await confirmButton.click();
     console.log("✅ Reservation confirmed");
 
-    await browser.close();
   }
 
   bookPadel().catch((error) => {
